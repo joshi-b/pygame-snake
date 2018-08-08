@@ -16,11 +16,11 @@ BLUE = (0, 0, 255)
 GREEN = (11, 140, 19)
 RED = (255, 0, 0)
 SAND = (245, 238, 223)
-GREY = (128, 127, 131)
+BROWN = (139, 78, 31)
 
 # Screen Dimensions
-WIDTH = 800
-HEIGHT = 600
+WIDTH = 700
+HEIGHT = 500
 
 img_dir = path.join(path.dirname(__file__), 'img')
 
@@ -36,6 +36,5 @@ font_nm = pygame.font.match_font('times')
 apple_img = pygame.image.load(path.join(img_dir, "apple.png")).convert_alpha()
 snake_head_img = pygame.image.load(path.join(img_dir, "snake_head.png")).convert_alpha()
 icon_img = pygame.image.load(path.join(img_dir, "icon.jpg")).convert_alpha()
-
 
 pygame.display.set_icon(icon_img)
