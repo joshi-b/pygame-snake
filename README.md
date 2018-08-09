@@ -1,9 +1,9 @@
 # pygame-snake
-##SSnake
+## SSnake
 
 The classic snake game built using Python's pygame library.
 
-![alt text](https://github.com/joshi-b/pygame-snake/blob/master/img/screencap.jpg)
+![alt text](https://github.com/joshi-b/pygame-snake/blob/master/img/screencap.JPG)
 
 ## How to Play
 
