@@ -52,7 +52,7 @@ class Player(pygame.sprite.Sprite):
         self.rect.y += self.speedy
 
     def collision(self):
-        self.length += 2
+        self.length += 5
         self.score += 1
 
 class Food(pygame.sprite.Sprite):
