@@ -35,6 +35,38 @@ def start_screen():
                 pygame.quit()
                 quit()
 
+def game_over_screen():
+    while True:
+        c.screen.fill(c.SAND)
+        text_to_screen("Game Over!", c.BROWN, 60, c.WIDTH/2, (c.HEIGHT/2)-70)
+        text_to_screen("\u2192 Press P to play again", c.GREEN, 25, (c.WIDTH/2)-2, c.HEIGHT/2)
+        text_to_screen("\u2192 Press Q to QUIT", c.GREEN, 25, (c.WIDTH/2)-21, c.HEIGHT/2+40)
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    pygame.quit()
+                    quit()
+                if event.key == pygame.K_p:
+                    initGame()
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+def pause_screen():
+    while True:
+        text_to_screen("Paused", c.BROWN, 35, c.WIDTH/2, c.HEIGHT/2-35)
+        c.screen.blit(c.pause_button_img, [c.WIDTH/2-15, c.HEIGHT/2])
+        text_to_screen("Press P again to continue playing", c.BROWN, 20, c.WIDTH/2, c.HEIGHT/2+60)
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_p:
+                    return
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
 def initGame():
     # initialize sprites 
     global all_sprites
@@ -57,37 +89,22 @@ def initGame():
 # game loop
 def gameLoop():
     game = True
-    gameOver = False
+    pause = False
     while game:
         # fps
         c.clock.tick(c.FPS)
-        
-        # game over screen
-        while gameOver == True:
-            c.screen.fill(c.SAND)
-            text_to_screen("Game Over!", c.BROWN, 60, c.WIDTH/2, (c.HEIGHT/2)-70)
-            text_to_screen("\u2192 Press P to play again", c.GREEN, 25, (c.WIDTH/2)-2, c.HEIGHT/2)
-            text_to_screen("\u2192 Press Q to QUIT", c.GREEN, 25, (c.WIDTH/2)-30, c.HEIGHT/2+40)
-            pygame.display.update()
-            for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_q:
-                        gameOver = False
-                        game = False
-                    if event.key == pygame.K_p:
-                        initGame()
-                if event.type == pygame.QUIT:
-                    gameOver = False
-                    game = False
 
         # process input
         for event in pygame.event.get():
-            if (event.type == pygame.QUIT):
+            if event.type == pygame.QUIT:
                 game = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_p:
+                    pause_screen()
         
         # if snake touches edges, game over!
         if snake.rect.right >= c.WIDTH or snake.rect.left < 0 or snake.rect.top < 0 or snake.rect.bottom >= c.HEIGHT:
-            gameOver = True
+            game_over_screen()
 
         all_sprites.update()
         c.screen.fill(c.SAND)
@@ -104,13 +121,20 @@ def gameLoop():
 
         # if snake runs over itself, game over!
         for i in snake.posList[:-1]:
-                if i == head:
-                        gameOver = True
+            if i == head:
+                game_over_screen()
 
         # draw snake length and tail
         for i in snake.posList[:-2]:
-            pygame.draw.rect(c.screen, c.GREEN, [i[0], i[1],c.SIZE_OF_SBLOCK, c.SIZE_OF_SBLOCK])
-
+            if snake.direction == "L":
+                c.screen.blit(pygame.transform.rotate(c.snake_tail_img, 270), [i[0], i[1]])
+            if snake.direction == "R":
+                c.screen.blit(pygame.transform.rotate(c.snake_tail_img, 90), [i[0], i[1]])
+            if snake.direction == "U":
+                c.screen.blit(pygame.transform.rotate(c.snake_tail_img, 180), [i[0], i[1]])
+            if snake.direction == "D":
+                c.screen.blit(pygame.transform.rotate(c.snake_tail_img, 360), [i[0], i[1]])
+                
         # check for collisions
         collision = pygame.sprite.spritecollide(snake, foods, True)
         if collision:

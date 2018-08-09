@@ -19,6 +19,7 @@ class Player(pygame.sprite.Sprite):
         self.posList = []
         self.length = 1
         self.score = 0
+        self.direction = None
 
     def update(self):
         keystate = pygame.key.get_pressed()
@@ -27,21 +28,25 @@ class Player(pygame.sprite.Sprite):
             self.speedx = -c.SPEED
             self.speedy = 0
             self.image = pygame.transform.rotate(c.snake_head_img, 90)
+            self.direction = "L"
 
         elif keystate[pygame.K_RIGHT]:
             self.speedx = c.SPEED
             self.speedy = 0
             self.image = pygame.transform.rotate(c.snake_head_img, 270)
+            self.direction = "R"
 
         elif keystate[pygame.K_UP]:
             self.speedy = -c.SPEED
             self.speedx = 0
             self.image = pygame.transform.rotate(c.snake_head_img, 360)
+            self.direction = "U"
 
         elif keystate[pygame.K_DOWN]:
             self.speedy = c.SPEED
             self.speedx = 0
             self.image = pygame.transform.rotate(c.snake_head_img, 180)
+            self.direction = "D"
             
         self.rect.x += self.speedx
         self.rect.y += self.speedy

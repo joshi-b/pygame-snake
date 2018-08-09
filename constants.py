@@ -37,5 +37,7 @@ apple_img = pygame.image.load(path.join(img_dir, "apple.png")).convert_alpha()
 snake_head_img = pygame.image.load(path.join(img_dir, "snake_head.png")).convert_alpha()
 icon_img = pygame.image.load(path.join(img_dir, "icon.jpg")).convert_alpha()
 start_screen_img = pygame.image.load(path.join(img_dir, "start_screen.png")).convert_alpha()
+snake_tail_img = pygame.image.load(path.join(img_dir, "snake_tail.png")).convert_alpha()
+pause_button_img = pygame.image.load(path.join(img_dir, "pause_button.png")).convert_alpha()
 
 pygame.display.set_icon(icon_img)
