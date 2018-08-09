@@ -7,6 +7,15 @@ The classic snake game built using Python's pygame library.
 
 ## How to Play
 
+This game requires Python 3 and the pygame library.
+
+```
+git clone https://github.com/joshi-b/pygame-snake.git
+cd pygame-snake
+python main.py
+
+```
+
 * Control the snake using the arrow keys
 * Press P to pause (and P again to resume)
 
