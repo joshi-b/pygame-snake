@@ -30,11 +30,12 @@ pygame.mixer.init()
 screen = pygame.display.set_mode((WIDTH+10, HEIGHT+10))
 pygame.display.set_caption('SSSnake')
 clock = pygame.time.Clock()
-font_nm = pygame.font.match_font('times')
+font_nm = pygame.font.match_font('arial')
 
 # load game graphics
 apple_img = pygame.image.load(path.join(img_dir, "apple.png")).convert_alpha()
 snake_head_img = pygame.image.load(path.join(img_dir, "snake_head.png")).convert_alpha()
 icon_img = pygame.image.load(path.join(img_dir, "icon.jpg")).convert_alpha()
+start_screen_img = pygame.image.load(path.join(img_dir, "start_screen.png")).convert_alpha()
 
 pygame.display.set_icon(icon_img)

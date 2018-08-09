@@ -17,6 +17,24 @@ def text_to_screen(msg, color, size, x, y):
     text_rect.center = (x, y)
     c.screen.blit(text_surf, text_rect)
 
+def start_screen():
+    while True:
+        c.screen.fill(c.SAND)
+        c.screen.blit(c.start_screen_img, [10, 70])
+        text_to_screen("\u2192 Eat the apples to get bigger", c.BROWN, 27, c.WIDTH/2-10, 100)
+        text_to_screen("\u2192 Don't run into anything", c.BROWN, 27, c.WIDTH/2-37, 140)
+        text_to_screen("\u2192 Use arrow keys to move", c.BROWN, 27, c.WIDTH/2-27,180)
+        text_to_screen("Press SPACE to play", c.BROWN, 32, c.WIDTH/2, c.HEIGHT/2+180) 
+        pygame.display.update()
+        
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    initGame()
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
 def initGame():
     # initialize sprites 
     global all_sprites
@@ -48,8 +66,8 @@ def gameLoop():
         while gameOver == True:
             c.screen.fill(c.SAND)
             text_to_screen("Game Over!", c.BROWN, 60, c.WIDTH/2, (c.HEIGHT/2)-70)
-            text_to_screen(" \u2192 Press P to play again", c.GREEN, 25, (c.WIDTH/2)-2, c.HEIGHT/2)
-            text_to_screen(" \u2192 Press Q to QUIT", c.GREEN, 25, (c.WIDTH/2)-20-2, c.HEIGHT/2+40)
+            text_to_screen("\u2192 Press P to play again", c.GREEN, 25, (c.WIDTH/2)-2, c.HEIGHT/2)
+            text_to_screen("\u2192 Press Q to QUIT", c.GREEN, 25, (c.WIDTH/2)-30, c.HEIGHT/2+40)
             pygame.display.update()
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
@@ -117,4 +135,4 @@ def gameLoop():
     pygame.quit()
     quit()
 
-initGame()
+start_screen()
