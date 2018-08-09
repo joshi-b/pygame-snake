@@ -20,7 +20,7 @@ def text_to_screen(msg, color, size, x, y):
 def start_screen():
     while True:
         c.screen.fill(c.SAND)
-        c.screen.blit(c.start_screen_img, [10, 70])
+        c.screen.blit(c.start_screen_img, [10, 50])
         text_to_screen("\u2192 Eat the apples to get bigger", c.BROWN, 27, c.WIDTH/2-10, 100)
         text_to_screen("\u2192 Don't run into anything", c.BROWN, 27, c.WIDTH/2-37, 140)
         text_to_screen("\u2192 Use arrow keys to move", c.BROWN, 27, c.WIDTH/2-27,180)
@@ -152,7 +152,7 @@ def gameLoop():
             pygame.draw.rect(c.screen, c.BROWN, [c.WIDTH+5, x, 5, 5])
 
         # update screen with score
-        text_to_screen("Score: " + str(snake.score), c.BLACK, 24, 70, 40)
+        text_to_screen("Score: " + str(snake.score), c.BROWN, 24, 70, 40)
 
         pygame.display.update()
 
